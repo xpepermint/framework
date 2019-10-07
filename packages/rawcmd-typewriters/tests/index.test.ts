@@ -11,6 +11,7 @@ spec.test('exposed content', (ctx) => {
   ctx.true(!!exp.TextStyle);
   ctx.true(!!exp.commandsTypewriter);
   ctx.true(!!exp.contentsTypewriter);
+  ctx.true(!!exp.errorTypewriter);
   ctx.true(!!exp.helpTypewriter);
   ctx.true(!!exp.linksTypewriter);
   ctx.true(!!exp.optionsTypewriter);

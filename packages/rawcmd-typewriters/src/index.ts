@@ -1,6 +1,7 @@
 export { EOL, TextAlign, TextStyle, TextColor, TextBackground } from '@rawcmd/text';
 export * from './typewriters/commands';
 export * from './typewriters/contents';
+export * from './typewriters/error';
 export * from './typewriters/help';
 export * from './typewriters/links';
 export * from './typewriters/options';

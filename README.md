@@ -257,9 +257,9 @@ TODO
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.title | String | No | - | Section title (defaults to `Commands`).
-| options.paddingWidth | Integer | No | - | Dotted padding size (defaults to `5`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.title | String | No | Commands | Section title.
+| options.paddingWidth | Integer | No | 5 | Dotted padding size.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 **contentsTypewriter(options)**: Function(data)
@@ -268,9 +268,21 @@ TODO
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.paddingWidth | Integer | No | - | Dotted padding size (defaults to `5`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.paddingWidth | Integer | No | 5 | Dotted padding size.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | data | String[][] | Yes | - | List of arrays with names and descriptions.
+
+**errorTypewriter(options)**: Function(error)
+
+> Returns a function which builds an arbitrary table of contents string with names and decriptions
+
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| options.code | Integer | No | 500000 | Default error code.
+| options.message | String | No | Text | Default error message.
+| options.title | String | No | Error | Section title.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
+| error | Error | Yes | - | Arbitrary error object.
 
 **helpTypewriter(options)**: Function(data)
 
@@ -278,7 +290,7 @@ TODO
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 **linksTypewriter(options)**: Function(command)
@@ -287,9 +299,9 @@ TODO
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.title | String | No | - | Section title (defaults to `Links`).
-| options.paddingWidth | Integer | No | - | Dotted padding size (defaults to `5`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.title | String | No | Links | Section title.
+| options.paddingWidth | Integer | No | 5 | Dotted padding size.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 **optionsTypewriter(options)**: Function(command)
@@ -298,9 +310,9 @@ TODO
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.title | String | No | - | Section title (defaults to `Options`).
-| options.paddingWidth | Integer | No | - | Dotted padding size (defaults to `5`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.title | String | No | Options | Section title.
+| options.paddingWidth | Integer | No | 5 | Dotted padding size.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 **rowTypewriter(columns, options)**: Function(data)
@@ -340,8 +352,8 @@ const text = typewriter([
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.title | String | No | - | Section title (defaults to `Summary`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.title | String | No | Summary | Section title.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 **textTypewriter(options)**: Function(data)
@@ -376,7 +388,7 @@ const text = typewriter('Hello World!');
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | text | String | Yes | - | Arbitrary text.
 
 **usageTypewriter**: Function(command)
@@ -385,8 +397,8 @@ const text = typewriter('Hello World!');
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| options.title | String | No | - | Section title (defaults to `Usage`).
-| options.totalWidth | Integer | No | - | Allowed horizontal width (defaults to `80`).
+| options.title | String | No | Usage | Section title.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
 ## Packages
