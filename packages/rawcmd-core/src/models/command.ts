@@ -344,7 +344,7 @@ async function sanitizeOptions(command: Command<any>, data: {[key: string]: any}
   const model = new Model(data);
   try {
     await model.validate();
-    return model.serialize();
+    return  model.serialize();
   } catch (e) {
     await model.handle(e);
     throw new ValidationError(model);
@@ -358,7 +358,11 @@ async function sanitizeOptions(command: Command<any>, data: {[key: string]: any}
  */
 function readOptionValueByName(name: string, args: string[]) {
   const item = args.find((a) => a === `--${name}` || a.indexOf(`--${name}=`) === 0);
-  return item ? item.split('=', 2)[1] : undefined;
+  if (item) {
+    return item.indexOf(`--${name}=`) === 0 ? item.split('=', 2)[1] : true;
+  } else {
+    return undefined;
+  }
 }
 
 /**
@@ -370,7 +374,7 @@ function readOptionValueByAlias(alias: string, args: string[]) {
   const index = alias ? args.indexOf(`-${alias}`) : -1;
   if (index >= 0) {
     const value = args[index + 1];
-    return /^-\w|^--\w/.test(value) ? null : value;
+    return /^-\w|^--\w/.test(value) ? true : value;
   } else {
     return undefined;
   }

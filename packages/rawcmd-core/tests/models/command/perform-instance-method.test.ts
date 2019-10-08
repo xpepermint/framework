@@ -63,9 +63,9 @@ spec.test('passes options to resolver', async (ctx) => {
   await command.perform();
   ctx.deepEqual(options, { opt0a: null, opt0b: null, opt0c: null });
   await command.perform('--opt0a=yes', '--opt0b', '--fake');
-  ctx.deepEqual(options, { opt0a: 'yes', opt0b: null, opt0c: null });
+  ctx.deepEqual(options, { opt0a: 'yes', opt0b: true, opt0c: null });
   await command.perform('cmd1', '--opt1a=yes', '--opt1b', '--fake');
-  ctx.deepEqual(options, { opt1a: 'yes', opt1b: null, opt1c: null });
+  ctx.deepEqual(options, { opt1a: 'yes', opt1b: true, opt1c: null });
 });
 
 spec.test('passes tail to resolver', async (ctx) => {
@@ -102,7 +102,7 @@ spec.test('supports option alias', async (ctx) => {
   });
 
   await command.perform('-0a', 'yes', '-0b', '-fake');
-  ctx.deepEqual(options, { opt0a: 'yes', opt0b: null, opt0c: null });
+  ctx.deepEqual(options, { opt0a: 'yes', opt0b: true, opt0c: null });
 });
 
 spec.test('supports option customer getter', async (ctx) => {
@@ -178,6 +178,8 @@ spec.test('supports option default value', async (ctx) => {
   });
 
   await command.perform('--foo');
+  ctx.deepEqual(options, { foo: true });
+  await command.perform();
   ctx.deepEqual(options, { foo: 'foo' });
 });
 
