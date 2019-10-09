@@ -38,6 +38,14 @@ spec.test('writes messages in animated row', async (ctx) => {
   ctx.is(streamlet.toString(), `⠹ baz `);
 });
 
+spec.test('writes multiline message', async (ctx) => {
+  const streamlet = ctx.get('streamlet');
+  const spinner = ctx.get('spinner');
+  spinner.start();
+  spinner.write('foo\nbar\nbaz\n\n\n');
+  ctx.is(streamlet.toString(), `⠋ baz `);
+});
+
 spec.test('supports custom characters', async (ctx) => {
   const streamlet = ctx.get('streamlet');
   const spinner = new Spinner({

@@ -116,8 +116,10 @@ export class Spinner {
     if (!this.isStarted()) {
       return false;
     }
-    this._message = message;
-    this._render(); // force repaint
+    message.trim().split(/\r?\n/g).forEach((line) => { // one line at a time
+      this._message = line;
+      this._render(); // force repaint
+    });
     return true;
   }
 
