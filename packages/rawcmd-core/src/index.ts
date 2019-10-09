@@ -7,6 +7,6 @@ export * from './streamlets/console';
 export * from './streamlets/memory';
 export * from './writers/spinwriter';
 export * from './writers/typewriter';
-export * from './models/option';
-export * from './models/link';
+export * from './models/command-option';
+export * from './models/command-link';
 export * from './models/command';

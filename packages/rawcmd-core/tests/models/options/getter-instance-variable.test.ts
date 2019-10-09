@@ -1,11 +1,11 @@
 import { Spec } from '@hayspec/spec';
-import { Option } from '../../../src';
+import { CommandOption } from '../../../src';
 
 const spec = new Spec();
 
 spec.test('returns command option getter', async (ctx) => {
   const getter = () => true;
-  const option = new Option({ getter } as any);
+  const option = new CommandOption({ getter } as any);
   ctx.is(option.getter, getter);
 });
 

@@ -1,16 +1,16 @@
 /**
- * Link data type.
+ *  link data type.
  */
-export type LinkData = (
-  Link
-  | LinkRecipe
-  | (() => (Link | LinkRecipe))
+export type CommandLinkData = (
+  CommandLink
+  | CommandLinkRecipe
+  | (() => (CommandLink | CommandLinkRecipe))
 );
 
 /**
  * Command link interface.
  */
-export interface LinkRecipe {
+export interface CommandLinkRecipe {
 
   /**
    * Link name.
@@ -18,7 +18,7 @@ export interface LinkRecipe {
   name: string;
 
   /**
-   * Link description.
+   * Link URL.
    */
   url?: string;
 
@@ -27,7 +27,7 @@ export interface LinkRecipe {
 /**
  * Command link model.
  */
-export class Link {
+export class CommandLink {
 
   /**
    * Link name.
@@ -35,7 +35,7 @@ export class Link {
   public name: string;
 
   /**
-   * Link url.
+   * Link URL.
    */
   public url: string;
 
@@ -43,7 +43,7 @@ export class Link {
    * Class constructor.
    * @param recipe Command link recipe.
    */
-  public constructor(recipe?: LinkRecipe) {
+  public constructor(recipe?: CommandLinkRecipe) {
     recipe = { ...recipe };
     this.name = recipe.name || null;
     this.url = recipe.url || null;
@@ -53,7 +53,7 @@ export class Link {
    * Returns a new Link instance which is the exact copy of the original.
    * @param recipe Command link recipe.
    */
-  public clone(recipe?: LinkRecipe): this {
+  public clone(recipe?: CommandLinkRecipe): this {
     return new (this.constructor as any)({
       name: this.name,
       url: this.url,

@@ -1,11 +1,11 @@
 import { realize } from '@rawcmd/utils';
-import { Option, OptionData } from './option';
+import { CommandOption, CommandOptionData } from './command-option';
 import { Typewriter } from '../writers/typewriter';
 import { createModelClass } from '@rawmodel/core';
 import { CommandResolver, ErrorCode } from '../types';
 import { ValidationError } from '../errors/validation';
 import { RuntimeError } from '../errors/runtime';
-import { LinkData, Link } from './link';
+import { CommandLink, CommandLinkData } from './command-link';
 import { Spinwriter } from '../writers/spinwriter';
 
 /**
@@ -40,7 +40,7 @@ export interface CommandRecipe<Context> {
   /**
    * List of command options.
    */
-  options?: OptionData[];
+  options?: CommandOptionData[];
 
   /**
    * List of sub commands.
@@ -50,7 +50,7 @@ export interface CommandRecipe<Context> {
   /**
    * List of links.
    */
-  links?: LinkData[];
+  links?: CommandLinkData[];
 
   /**
    * Command resolver.
@@ -114,7 +114,7 @@ export class Command<Context = any> {
   /**
    * Command options.
    */
-  public options: Option[];
+  public options: CommandOption[];
 
   /**
    * Sub commands.
@@ -122,9 +122,9 @@ export class Command<Context = any> {
   public commands: Command<Context>[];
 
   /**
-   * Command links
+   * Command links.
    */
-  public links: Link[];
+  public links: CommandLink[];
 
   /**
    * Command resolver.
@@ -158,7 +158,7 @@ export class Command<Context = any> {
     };
     this.options = (recipe.options || []).map((option) => {
       option = realize(option, this, [config]);
-      return option instanceof Option ? option.clone() : new Option(option);
+      return option instanceof CommandOption ? option.clone() : new CommandOption(option);
     });
     this.commands = (recipe.commands || []).map((command) => {
       command = realize(command, this, [config]);
@@ -166,7 +166,7 @@ export class Command<Context = any> {
     });
     this.links = (recipe.links || []).map((link) => {
       link = realize(link, this, [config]);
-      return link instanceof Link ? link.clone() : new Link(link);
+      return link instanceof CommandLink ? link.clone() : new CommandLink(link);
     });
 
     this.resolver = recipe.resolver || (() => null);

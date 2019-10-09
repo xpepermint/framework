@@ -5,13 +5,13 @@ const spec = new Spec();
 
 spec.test('exposed content', (ctx) => {
   ctx.true(!!exp.Command);
+  ctx.true(!!exp.CommandLink);
+  ctx.true(!!exp.CommandOption);
   ctx.true(!!exp.ConsoleStreamlet);
   ctx.true(!!exp.EOL);
   ctx.true(!!exp.ErrorCode);
   ctx.true(!!exp.GenericError);
-  ctx.true(!!exp.Link);
   ctx.true(!!exp.MemoryStreamlet);
-  ctx.true(!!exp.Option);
   ctx.true(!!exp.RuntimeError);
   ctx.true(!!exp.Spinwriter);
   ctx.true(!!exp.Typewriter);

@@ -1,18 +1,18 @@
 import { SimpleResolver, ParserRecipe, ValidatorRecipe, HandlerRecipe } from '@rawmodel/core';
 
 /**
- * Option data type.
+ * Command option data type.
  */
-export type OptionData = (
-  Option
-  | OptionRecipe
-  | (() => (Option | OptionRecipe))
+export type CommandOptionData = (
+  CommandOption
+  | CommandOptionRecipe
+  | (() => (CommandOption | CommandOptionRecipe))
 );
 
 /**
  * Command option interface.
  */
-export interface OptionRecipe {
+export interface CommandOptionRecipe {
 
   /**
    * Option name.
@@ -69,7 +69,7 @@ export interface OptionRecipe {
 /**
  * Command option model.
  */
-export class Option {
+export class CommandOption {
 
   /**
    * Option name.
@@ -125,7 +125,7 @@ export class Option {
    * Class constructor.
    * @param recipe Command option recipe.
    */
-  public constructor(recipe?: OptionRecipe) {
+  public constructor(recipe?: CommandOptionRecipe) {
     recipe = { ...recipe };
     this.name = recipe.name || null;
     this.alias = recipe.alias || null;
@@ -143,7 +143,7 @@ export class Option {
    * Returns a new Option instance which is the exact copy of the original.
    * @param recipe Command option recipe.
    */
-  public clone(recipe?: OptionRecipe): this {
+  public clone(recipe?: CommandOptionRecipe): this {
     return new (this.constructor as any)({
       name: this.name,
       alias: this.alias,

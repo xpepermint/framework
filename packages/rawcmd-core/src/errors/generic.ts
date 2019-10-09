@@ -8,7 +8,7 @@ export class GenericError extends Error {
   /**
    * Unique error code number.
    */
-  public code: ErrorCode;
+  public code: number;
 
   /**
    * Class constructor.

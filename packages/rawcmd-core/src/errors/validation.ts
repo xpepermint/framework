@@ -13,9 +13,9 @@ export class ValidationError extends GenericError {
   public constructor(model: Model) {
     super();
 
-    const { code } = model.collectErrors()[0];
+    const errors = model.collectErrors();
     this.message = 'Validation failed.';
-    this.code = code;
+    this.code = errors.length ? errors[0].code : -1;
 
     Error.captureStackTrace(this, this.constructor);
   }

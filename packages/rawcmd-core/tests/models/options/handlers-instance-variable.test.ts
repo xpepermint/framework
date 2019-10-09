@@ -1,11 +1,11 @@
 import { Spec } from '@hayspec/spec';
-import { Option } from '../../../src';
+import { CommandOption } from '../../../src';
 
 const spec = new Spec();
 
 spec.test('returns command option handlers', async (ctx) => {
   const handlers = [{ code: 1000 }];
-  const option = new Option({ handlers } as any);
+  const option = new CommandOption({ handlers } as any);
   ctx.deepEqual(option.handlers, handlers);
 });
 

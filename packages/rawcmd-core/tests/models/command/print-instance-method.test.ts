@@ -1,6 +1,5 @@
 import { Spec } from '@hayspec/spec';
-import { EOL } from 'os';
-import { Command, Typewriter, MemoryStreamlet } from '../../../src';
+import { EOL, Command, Typewriter, MemoryStreamlet } from '../../../src';
 
 const spec = new Spec<{
   streamlet: MemoryStreamlet;

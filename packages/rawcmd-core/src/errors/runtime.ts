@@ -10,7 +10,7 @@ export class RuntimeError extends GenericError {
    * Class constructor.
    * @param code Unique error code number.
    */
-  public constructor(code: ErrorCode) {
+  public constructor(code: number) {
     super();
 
     this.message = 'Unexpected runtime error.';
