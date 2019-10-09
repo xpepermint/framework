@@ -304,6 +304,17 @@ TODO
 | options.totalWidth | Integer | No | 80 | Allowed horizontal width.
 | command | Command | Yes | - | Command class instance.
 
+**logTypewriter(options)**: Function(message, namespace, date)
+
+> Returns a function which builds a string for displaying log message.
+
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| options.message | String | Yes | Arbitrary log message.
+| options.namespace | String | No | - | Namespace string.
+| options.date | Date | No | Date | Date object instance.
+| options.totalWidth | Integer | No | 80 | Allowed horizontal width.
+
 **optionsTypewriter(options)**: Function(command)
 
 > Returns a function which builds a string representing a list of all available command options with descriptions.

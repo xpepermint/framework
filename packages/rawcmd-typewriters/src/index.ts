@@ -4,6 +4,7 @@ export * from './typewriters/contents';
 export * from './typewriters/error';
 export * from './typewriters/help';
 export * from './typewriters/links';
+export * from './typewriters/log';
 export * from './typewriters/options';
 export * from './typewriters/row';
 export * from './typewriters/summary';

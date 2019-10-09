@@ -14,6 +14,7 @@ spec.test('exposed content', (ctx) => {
   ctx.true(!!exp.errorTypewriter);
   ctx.true(!!exp.helpTypewriter);
   ctx.true(!!exp.linksTypewriter);
+  ctx.true(!!exp.logTypewriter);
   ctx.true(!!exp.optionsTypewriter);
   ctx.true(!!exp.rowTypewriter);
   ctx.true(!!exp.summaryTypewriter);
