@@ -183,11 +183,12 @@ TODO
 | recipe.resolver | Function | No | - | Command resolver.
 | config.parent | Command | No | - | Parent command class instance.
 | config.context | Context | No | - | Arbitrary context data.
+| config.spinwriter | Spinwriter | No | - | Spinwriter class instance.
 | config.typewriter | Typewriter | No | - | Typewriter class instance.
 
-**Command.prototype.name**: String
+**Command.prototype.break()**: Command
 
-> Returns command name.
+> Writes EOL to outptu stream.
 
 **Command.prototype.description**: String
 
@@ -205,9 +206,17 @@ TODO
 
 > Returns parent command instance.
 
+**Command.prototype.getSpinwriter()**: Spinwriter
+
+> Returns spinwriter class instance.
+
 **Command.prototype.getTypewriter()**: Typewriter
 
 > Returns typewriter class instance.
+
+**Command.prototype.name**: String
+
+> Returns command name.
 
 **Command.prototype.perform(...args)**: Promise<Command>
 
@@ -217,14 +226,6 @@ TODO
 |--------|------|----------|---------|------------
 | args | String[] | No | - | List of command-line arguments (e.g. ['init', '--name=foo']). Expects parameters as `process.argv.slice(2)`.
 
-**Command.prototype.write(...messages)**: Command
-
-> Appends outptu stream with messages.
-
-| Option | Type | Required | Default | Description
-|--------|------|----------|---------|------------
-| messages | string[] | Yes | - | List of arbirary messages.
-
 **Command.prototype.print(...messages)**: Command
 
 > Writes messages to outptu stream with EOL at the end.
@@ -233,10 +234,6 @@ TODO
 |--------|------|----------|---------|------------
 | messages | string[] | Yes | - | List of arbirary messages.
 
-**Command.prototype.break()**: Command
-
-> Writes EOL to outptu stream.
-
 **Command.prototype.spin(message)**: Command
 
 > Writes a message to outptu stream as spinner animation.
@@ -244,6 +241,14 @@ TODO
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
 | message | string | Yes | - | Arbirary message.
+
+**Command.prototype.write(...messages)**: Command
+
+> Appends outptu stream with messages.
+
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| messages | string[] | Yes | - | List of arbirary messages.
 
 **EOL**: String
 

@@ -1,27 +1,27 @@
 import { Spec } from '@hayspec/spec';
-import { Spinner, MemoryStreamlet } from '../../../src';
+import { Spinwriter, MemoryStreamlet } from '../../../src';
 
 const spec = new Spec<{
   streamlet: MemoryStreamlet;
-  spinner: Spinner;
+  spinwriter: Spinwriter;
 }>();
 
 spec.beforeEach((ctx) => {
   ctx.set('streamlet', new MemoryStreamlet());
-  ctx.set('spinner', new Spinner({
+  ctx.set('spinwriter', new Spinwriter({
     streamlet: ctx.get('streamlet'),
   }));
 });
 
 spec.afterEach((ctx) => {
-  ctx.get('spinner').stop();
+  ctx.get('spinwriter').stop();
 });
 
-spec.test('returns `true` when spinner is started', async (ctx) => {
-  const spinner = ctx.get('spinner');
-  ctx.false(spinner.isStarted());
-  spinner.start();
-  ctx.true(spinner.isStarted());
+spec.test('returns `true` when spinwriter is started', async (ctx) => {
+  const spinwriter = ctx.get('spinwriter');
+  ctx.false(spinwriter.isStarted());
+  spinwriter.start();
+  ctx.true(spinwriter.isStarted());
 });
 
 export default spec;

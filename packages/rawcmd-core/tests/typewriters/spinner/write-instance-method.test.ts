@@ -1,61 +1,61 @@
 import { Spec } from '@hayspec/spec';
-import { Spinner, MemoryStreamlet } from '../../../src';
+import { Spinwriter, MemoryStreamlet } from '../../../src';
 
 const spec = new Spec<{
   streamlet: MemoryStreamlet;
-  spinner: Spinner;
+  spinwriter: Spinwriter;
 }>();
 
 spec.beforeEach((ctx) => {
   ctx.set('streamlet', new MemoryStreamlet());
-  ctx.set('spinner', new Spinner({
+  ctx.set('spinwriter', new Spinwriter({
     streamlet: ctx.get('streamlet'),
   }));
 });
 
 spec.afterEach((ctx) => {
-  ctx.get('spinner').stop();
+  ctx.get('spinwriter').stop();
 });
 
 spec.test('does nothing when stopped', async (ctx) => {
   const streamlet = ctx.get('streamlet');
-  const spinner = ctx.get('spinner');
-  spinner.write('foo');
+  const spinwriter = ctx.get('spinwriter');
+  spinwriter.write('foo');
   ctx.is(streamlet.toString(), ``);
 });
 
 spec.test('writes messages in animated row', async (ctx) => {
   const streamlet = ctx.get('streamlet');
-  const spinner = ctx.get('spinner');
-  spinner.start();
-  spinner.write('foo');
+  const spinwriter = ctx.get('spinwriter');
+  spinwriter.start();
+  spinwriter.write('foo');
   ctx.is(streamlet.toString(), `⠋ foo `);
   await ctx.sleep(30);
-  spinner.write('bar');
+  spinwriter.write('bar');
   ctx.is(streamlet.toString(), `⠙ bar `);
   await ctx.sleep(30);
-  spinner.write('baz');
+  spinwriter.write('baz');
   ctx.is(streamlet.toString(), `⠹ baz `);
 });
 
 spec.test('writes multiline message', async (ctx) => {
   const streamlet = ctx.get('streamlet');
-  const spinner = ctx.get('spinner');
-  spinner.start();
-  spinner.write('foo\nbar\nbaz\n\n\n');
+  const spinwriter = ctx.get('spinwriter');
+  spinwriter.start();
+  spinwriter.write('foo\nbar\nbaz\n\n\n');
   ctx.is(streamlet.toString(), `⠋ baz `);
 });
 
 spec.test('supports custom characters', async (ctx) => {
   const streamlet = ctx.get('streamlet');
-  const spinner = new Spinner({
+  const spinwriter = new Spinwriter({
     streamlet,
     chars: ['|', '/', '-', '\\'],
   });
-  spinner.start();
+  spinwriter.start();
   await ctx.sleep(1);
   ctx.is(streamlet.toString(), '/ ');
-  spinner.stop();
+  spinwriter.stop();
 });
 
 export default spec;

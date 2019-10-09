@@ -1,8 +1,7 @@
 import { EOL } from '@rawcmd/text';
 import { toString } from '@rawcmd/utils';
-import { Spinner, SpinnerConfig } from './spinner';
 import { ConsoleStreamlet } from '../streamlets/console';
-import { StreamletBase, TypewriterResolver } from '../types';
+import { StreamletBase, WriterResolver } from '../types';
 
 /**
  * Printer class options interface.
@@ -12,12 +11,7 @@ export interface TypewriterConfig {
   /**
    * Message resolver function.
    */
-  resolver?: TypewriterResolver;
-
-  /**
-   * Spinner configuration options.
-   */
-  spinner?: SpinnerConfig;
+  resolver?: WriterResolver;
 
   /**
    * Streamlet class instance.
@@ -37,11 +31,6 @@ export class Typewriter<Message = any> {
   public readonly __config: TypewriterConfig;
 
   /**
-   * Spinner class instance.
-   */
-  protected _spinner: Spinner;
-
-  /**
    * Class constructor.
    * @param options Printer class options.
    */
@@ -49,14 +38,8 @@ export class Typewriter<Message = any> {
     this.__config = {
       streamlet: new ConsoleStreamlet(),
       resolver: (message) => toString(message) || '',
-      spinner: {},
       ...config,
     };
-
-    this._spinner = new Spinner({
-      ...this.__config.spinner,
-      streamlet: this.__config.streamlet,
-    });
   }
 
   /**
@@ -77,12 +60,10 @@ export class Typewriter<Message = any> {
   }
 
   /**
-   * Appends row data with new message. It also stops the animation if spinner
-   * is started.
+   * Appends row data with new message.
    * @param message Arbitrary message.
    */
   public write(message: Message): this {
-    this._spinner.stop();
     this.__config.streamlet.write(
       this.__config.resolver.call(this, message),
     );
@@ -90,22 +71,10 @@ export class Typewriter<Message = any> {
   }
 
   /**
-   * Writes EOL character. It also stops the animation if spinner is started.
+   * Writes EOL character.
    */
   public break(): this {
-    this._spinner.stop();
     this.__config.streamlet.write(EOL);
-    return this;
-  }
-
-  /**
-   * Updates spinning animation message. It also starts the animation if not
-   * already started.
-   * @param message Arbitrary spinner label.
-   */
-  public spin(message: string): this {
-    this._spinner.start();
-    this._spinner.write(message);
     return this;
   }
 

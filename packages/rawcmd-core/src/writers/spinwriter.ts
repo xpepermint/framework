@@ -1,10 +1,10 @@
 import { ConsoleStreamlet } from '../streamlets/console';
-import { StreamletBase, TypewriterResolver } from '../types';
+import { StreamletBase, WriterResolver } from '../types';
 
 /**
- * TTY spinner printer options interface.
+ * TTY spinwriter options interface.
  */
-export interface SpinnerConfig {
+export interface SpinwriterConfig {
 
   /**
    * Animation character sequence.
@@ -14,7 +14,7 @@ export interface SpinnerConfig {
   /**
    * Message resolver function.
    */
-  resolver?: TypewriterResolver;
+  resolver?: WriterResolver;
 
   /**
    * Animation speed.
@@ -29,14 +29,15 @@ export interface SpinnerConfig {
 }
 
 /**
- * TTY spinner printer for writing spinner animation messages to streamlets.
+ * TTY single line typewriter for writing messages to streamlets with spinning
+ * animation at the begining of a line.
  */
-export class Spinner {
+export class Spinwriter {
 
   /**
    * Spinner configuration.
    */
-  public readonly __config: SpinnerConfig;
+  public readonly __config: SpinwriterConfig;
 
   /**
    * Current animation message.
@@ -52,7 +53,7 @@ export class Spinner {
    * Class constructor.
    * @param config TTY spinner printer options.
    */
-  public constructor(config?: SpinnerConfig) {
+  public constructor(config?: SpinwriterConfig) {
     this.__config = {
       chars: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'],
       speed: 30,

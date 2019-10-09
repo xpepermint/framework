@@ -14,7 +14,7 @@ export type CommandResolver = (p: CommandInput) => any;
 /**
  * TTY spinner message resolver.
  */
-export type TypewriterResolver = (message: string) => string;
+export type WriterResolver = (message: string) => string;
 
 /**
  * Typewriter stream interface.

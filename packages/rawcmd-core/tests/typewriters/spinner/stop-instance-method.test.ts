@@ -1,27 +1,27 @@
 import { Spec } from '@hayspec/spec';
-import { Spinner, MemoryStreamlet } from '../../../src';
+import { Spinwriter, MemoryStreamlet } from '../../../src';
 
 const spec = new Spec<{
   streamlet: MemoryStreamlet;
-  spinner: Spinner;
+  spinwriter: Spinwriter;
 }>();
 
 spec.beforeEach((ctx) => {
   ctx.set('streamlet', new MemoryStreamlet());
-  ctx.set('spinner', new Spinner({
+  ctx.set('spinwriter', new Spinwriter({
     streamlet: ctx.get('streamlet'),
   }).start());
 });
 
 spec.afterEach((ctx) => {
-  ctx.get('spinner').stop();
+  ctx.get('spinwriter').stop();
 });
 
 spec.test('starts animation', async (ctx) => {
-  const spinner = ctx.get('spinner');
-  ctx.true(spinner.isStarted());
-  spinner.stop();
-  ctx.false(spinner.isStarted());
+  const spinwriter = ctx.get('spinwriter');
+  ctx.true(spinwriter.isStarted());
+  spinwriter.stop();
+  ctx.false(spinwriter.isStarted());
 });
 
 export default spec;

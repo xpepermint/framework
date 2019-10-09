@@ -1,11 +1,12 @@
 import { realize } from '@rawcmd/utils';
 import { Option, OptionData } from './option';
-import { Typewriter } from '../typewriters/typewriter';
+import { Typewriter } from '../writers/typewriter';
 import { createModelClass } from '@rawmodel/core';
 import { CommandResolver, ErrorCode } from '../types';
 import { ValidationError } from '../errors/validation';
 import { RuntimeError } from '../errors/runtime';
 import { LinkData, Link } from './link';
+import { Spinwriter } from '../writers/spinwriter';
 
 /**
  * Command data type.
@@ -78,6 +79,11 @@ export interface CommandConfig<Context> {
    */
   typewriter?: Typewriter;
 
+  /**
+   * Custom spinner instance.
+   */
+  spinwriter?: Spinwriter;
+
 }
 
 /**
@@ -136,6 +142,7 @@ export class Command<Context = any> {
     Object.defineProperty(this, '__config', {
       value: {
         typewriter: new Typewriter(),
+        spinwriter: new Spinwriter(),
         ...config,
       },
       enumerable: false,
@@ -146,7 +153,7 @@ export class Command<Context = any> {
     this.summary = recipe.summary || null;
 
     config = {
-      ...config,
+      ...this.__config,
       parent: this,
     };
     this.options = (recipe.options || []).map((option) => {
@@ -206,6 +213,13 @@ export class Command<Context = any> {
   }
 
   /**
+   * Returns command typewriter instance.
+   */
+  public getSpinwriter(): Spinwriter {
+    return this.__config.spinwriter || null;
+  }
+
+  /**
    * Performs a command based on the provided command-line arguments. The
    * function expects command-line arguments as `process.argv.slice(2)`.
    * @param args List of command-line arguments.
@@ -220,6 +234,7 @@ export class Command<Context = any> {
    * @param messages List of arbitrary messages.
    */
   public write(...messages: string[]): this {
+    this.getSpinwriter().stop();
     messages.forEach((message) => {
       this.getTypewriter().write(message);
     });
@@ -239,17 +254,18 @@ export class Command<Context = any> {
    * Performs Typewriter's `break` operation.
    */
   public break() {
+    this.getSpinwriter().stop();
     this.getTypewriter().break();
     return this;
   }
 
   /**
-   * Updates spinning animation message. It also starts the animation if not
-   * already started.
+   * Writes a message as spinning animation message.
    * @param message Arbitrary spinner label.
    */
   public spin(message: string) {
-    this.getTypewriter().spin(message);
+    this.getSpinwriter().start();
+    this.getSpinwriter().write(message);
     return this;
   }
 

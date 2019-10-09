@@ -13,7 +13,7 @@ spec.test('exposed content', (ctx) => {
   ctx.true(!!exp.MemoryStreamlet);
   ctx.true(!!exp.Option);
   ctx.true(!!exp.RuntimeError);
-  ctx.true(!!exp.Spinner);
+  ctx.true(!!exp.Spinwriter);
   ctx.true(!!exp.Typewriter);
   ctx.true(!!exp.ValidationError);
 });
