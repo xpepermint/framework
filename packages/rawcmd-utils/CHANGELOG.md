@@ -1,6 +1,11 @@
 # Change Log - @rawcmd/utils
 
-This log was last generated on Tue, 08 Oct 2019 17:59:03 GMT and should not be manually modified.
+This log was last generated on Wed, 09 Oct 2019 21:10:35 GMT and should not be manually modified.
+
+## 0.3.11
+Wed, 09 Oct 2019 21:10:35 GMT
+
+*Version update only*
 
 ## 0.3.10
 Tue, 08 Oct 2019 17:59:03 GMT

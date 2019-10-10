@@ -2,6 +2,12 @@
   "name": "@rawcmd/text",
   "entries": [
     {
+      "version": "0.3.11",
+      "tag": "@rawcmd/text_v0.3.11",
+      "date": "Wed, 09 Oct 2019 21:10:35 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.3.10",
       "tag": "@rawcmd/text_v0.3.10",
       "date": "Tue, 08 Oct 2019 17:59:03 GMT",
